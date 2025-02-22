@@ -1,0 +1,26 @@
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+   
+}
+
+.cell {
+    width: 75px;
+    height: 75px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 0 0 2px;
+}
+
+
+.game {
+    text-align: center;
+    margin-top: 50px;
+}
