@@ -1,5 +1,5 @@
 
-
+    ////////////    Stuff bellow creates html elements for the tictac toe //////////
     //  TicWrapper  -div
     let box = document.createElement("div");
     box.classList.add("ticWrapper");
@@ -56,35 +56,39 @@
     `;
     document.head.appendChild(style);
 
-    ///////////////////////////////////////////
-    ////////////// Game Loop Here /////////////
-    ///////////////////////////////////////////
     /////////////////////////////////////////////////
+    ///////////////////// Game //////////////////////
+    /////////////////////////////////////////////////
+
     let board = createBoard(); // Creating Board here
-    /////////////////////////////////////////////////
-    //  OnClickEvent
     let player = true;
     let cells = document.querySelectorAll(".cell");
+    
+    //  OnClickEvent
     cells.forEach(c => {
         c.addEventListener("click", function() {
         let pos = getPositionFromNumber(c.tabIndex);
-        if(player === true){
-            c.textContent = "X";
-            player = false;
-            makeMove(pos[0],pos[1],"X",board);
+        if(getCellContents(pos[0],pos[1],board) === " "){
+            if(player === true){
+                c.textContent = "X";
+                player = false;
+                makeMove(pos[0],pos[1],"X",board);
+            }
+            else{
+                c.textContent = "O";
+                player = true;
+                makeMove(pos[0],pos[1],"O",board);
+            }
         }
-        else{
-            c.textContent = "O";
-            player = true;
-            makeMove(pos[0],pos[1],"O",board);
-        }
+            
+        
         //  Console Printout
-        console.log(getBoard(board));
+        console.log(getBoardInText(board));
         //  Win check
         if(checkWin(board)){
             console.log("Player: " + (player ? "O" : "X") + " wiins!");
-            console.log(getBoard(board));            
-            label.innerHTML = "Win";
+            console.log(getBoardInText(board));            
+            label.innerHTML = "Player: " + (player ? "O" : "X") + " wins!";
         }
         });
     });
@@ -94,25 +98,20 @@
     restartButton.innerHTML = "RESET";
     restartButton.classList.add("tictactoebutton");
     document.getElementById("tictactoewrapper").appendChild(restartButton);
-    //  Reset stuff
+    //  Reset Button Logic
     restartButton.onclick = () => {
         board = createBoard();
         cells.forEach(c => c.textContent = " ");
         label.innerHTML = "";
-        console.log(getBoard(board));
+        console.log(getBoardInText(board));
 
     };
     //  Finished Game Printout
     const label = document.createElement("p");
     label.id = "tictactoeLabel";
-    label.style.color = "red";
+    label.style.color = "grey";
     document.getElementById("tictactoewrapper").appendChild(label);
+
     ///////////////////////////////////////////
-    const getPositionFromNumber = (x) => {
-        if(x < 3)
-            return [0, x % 3];
-        else if(x >= 3 && x < 6)
-            return [1, x % 3];
-        else if(x >= 6)
-            return [2, x % 3]
-    };
+    /////////////////////////////////////////// 
+    ///////////////////////////////////////////

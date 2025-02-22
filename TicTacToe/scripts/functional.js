@@ -2,7 +2,7 @@ const createBoard = () => {return [[" "," "," "],[" "," "," "],[" "," "," "]];};
 const makeMove = (x,y,z,b) => {
     b[x][y] = z;
 };
-const getBoard = (b) => {
+const getBoardInText = (b) => {
     return  "[" + b[0][0] + "][" + b[0][1] + "][" + b[0][2] + "]\n" +
     "[" + b[1][0] + "][" + b[1][1] + "][" + b[1][2] + "]\n" +
     "[" + b[2][0] + "][" + b[2][1] + "][" + b[2][2] + "]";
@@ -17,8 +17,7 @@ const checkWin = (board) => {
     for (let i = 0; i < board.length; i++) {
         if(board[0][i] !== " " && board[0][i] === board[1][i] && board[1][i] === board[2][i])
             return true;
-        }
-
+    }
     //  Diagonal Check
     if(board[0][0] !== " " && board[0][0] === board[1][1] && board[1][1] === board[2][2])
         return true;
@@ -27,6 +26,17 @@ const checkWin = (board) => {
 
     return false;
 };
+const getPositionFromNumber = (x) => {
+    if(x < 3)
+        return [0, x % 3];
+    else if(x >= 3 && x < 6)
+        return [1, x % 3];
+    else if(x >= 6)
+        return [2, x % 3]
+};
+const getCellContents = (x,y,board) => {
+    return board[x][y];
+}
 
 
 
