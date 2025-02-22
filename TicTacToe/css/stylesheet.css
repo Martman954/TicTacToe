@@ -1,4 +1,5 @@
 .game {
+    background-color: antiquewhite;
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: center;
@@ -20,7 +21,7 @@
 }
 
 
-.game {
+.wrapperr {
     text-align: center;
     margin-top: 50px;
 }
