@@ -6,40 +6,10 @@ class Board{
     
     checkWin(b){return this.verticalCheck(b) ;}
     verticalCheck(board){
-        b = board;
-        let points;
-        for (let i = 0; i < b.length; i++) {
-            points = 0;
-            for (let j = 0; j < b.length; j++) {
-                points++;
-                if(b[i][j] !== b[i][j+1] && j < 2)
-                    points--;
-                else if(b[i][j] !== b[i][j-1] && j == 2)
-                    points--;
-                
-            }
-            if(points == 3)
-                return true;
-        }
-        return false;
+        // Code here
     }
     horizontalCheck(board){
-        b = board;
-        let points;
-        for (let i = 0; i < b.length; i++) {
-            points = 0;
-            for (let j = 0; j < b.length; j++) {
-                points++;
-                if(j < 2 && b[j][i] !== b[j+1][i])
-                    points--;
-                else if( j == 2 && b[j][i] !== b[j-1][i])
-                    points--;
-                
-            }
-            if(points == 3)
-                return true;
-        }
-        return false;
+        // Code Here
     }
     diagonalCheck(board){
         if(board[0][0] === " " || board[0][2] === " ")
