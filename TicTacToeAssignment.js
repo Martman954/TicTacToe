@@ -4,21 +4,24 @@ class Board{
         this.#b = [[" "," "," "],[" "," "," "],[" "," "," "]];
     }
     
-    checkWin(b){return this.verticalCheck(b) ;}
-    verticalCheck(board){
-        // Code here
-    }
+    checkWin(){return this.horizontalCheck(this.#b) || this.diagonalCheck(this.#b) || this.verticalCheck(this.#b) ;}
     horizontalCheck(board){
-        // Code Here
+        for (let i = 0; i < board.length; i++) {
+            if(board[i][0] !== " " && board[i][0] === board[i][1] && board[i][1] === board[i][2])
+                return true;
+            }
+        return false;
+    }
+    verticalCheck(board){
+        for (let i = 0; i < board.length; i++) {
+            if(board[0][i] !== " " && board[0][i] === board[1][i] && board[1][i] === board[2][i])
+                return true;
+            }
+        return false;
     }
     diagonalCheck(board){
-        if(board[0][0] === " " || board[0][2] === " ")
-            return false;
-
-        x = board[0][0];
-        y = board[0][2]
-        return (board[0][0] === x && board[1][1] === x && board[2][2] === x)
-                || (board[0][2] === y && board[1][1] === y && board[2][0] === y)
+        return (board[0][0] !== " " && board[0][0] === board[1][1] && board[1][1] === board[2][2])
+                || (board[2][0] !== " " && board[0][2] === board[1][1] && board[1][1] === board[2][0])
     }
     makeMove(x,y,z){
         this.#b[x][y] = z; 
@@ -34,11 +37,11 @@ class Board{
 
 b = new Board();
 b.resetBoard();
-b.makeMove(1,1,"X");
 b.makeMove(2,1,"X");
 b.makeMove(0,1,"X");
+
+b.makeMove(2,0,"X");
 b.makeMove(2,1,"X");
-b.makeMove(0,2,"X");
 b.makeMove(2,2,"X");
 console.log(b.toString());
-console.log(b.checkWin(b));
+console.log(b.checkWin());
