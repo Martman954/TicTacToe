@@ -70,10 +70,9 @@ for (let i = 0; i < 9; i++) {
 let style = document.createElement("style");
 style.innerHTML = `
     .cell {
-        background-color: white;
         width: 75px;
         height: 75px;
-        border: 2px solid black;
+        border: 4px solid black;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -107,35 +106,41 @@ document.head.appendChild(style);
 /////////////////////////////////////////////////
 
 let board = createBoard(); // Creating Board here
-let player = true;
 let cells = document.querySelectorAll(".cell");
-
+let player = true, gameLoop = true;
 //  OnClickEvent
 cells.forEach(c => {
     c.addEventListener("click", function() {
-    let pos = getPositionFromNumber(c.tabIndex);
-    if(getCellContents(pos[0],pos[1],board) === " "){
-        if(player === true){
-            c.textContent = "X";
-            player = false;
-            makeMove(pos[0],pos[1],"X",board);
+        let pos = getPositionFromNumber(c.tabIndex);
+        let p = document.createElement("p");
+        if(getCellContents(pos[0],pos[1],board) === " " && gameLoop === true){
+            if(player === true){
+                p.textContent = "X";
+                p.style.color = "blue";
+                p.style.fontSize = "80px";
+                player = false;
+                makeMove(pos[0],pos[1],"X",board);
+            }
+            else{
+                p.textContent = "O";
+                p.style.color = "red";
+                p.style.fontSize = "80px";
+                player = true;
+                makeMove(pos[0],pos[1],"O",board);
+            }
+            c.appendChild(p);
         }
-        else{
-            c.textContent = "O";
-            player = true;
-            makeMove(pos[0],pos[1],"O",board);
+            
+        //  Console Printout
+        console.log(getBoardInText(board));
+
+        //  Win check
+        if(checkWin(board)){
+            console.log("Player: " + (player ? "O" : "X") + " wiins!");
+            console.log(getBoardInText(board));            
+            label.innerHTML = "Player: " + (player ? "<b style='color:red;';>O</b>" : "<b style='color:blue;';>X</b>") + " wins!";
+            gameLoop = false;
         }
-    }
-        
-    
-    //  Console Printout
-    console.log(getBoardInText(board));
-    //  Win check
-    if(checkWin(board)){
-        console.log("Player: " + (player ? "O" : "X") + " wiins!");
-        console.log(getBoardInText(board));            
-        label.innerHTML = "Player: " + (player ? "O" : "X") + " wins!";
-    }
     });
 });
 
@@ -149,6 +154,7 @@ restartButton.onclick = () => {
     board = createBoard();
     cells.forEach(c => c.textContent = " ");
     label.innerHTML = "";
+    gameLoop = true;
     console.log(getBoardInText(board));
 
 };
