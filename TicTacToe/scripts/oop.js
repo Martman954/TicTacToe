@@ -8,7 +8,7 @@ class Board{
         for (let i = 0; i < board.length; i++) {
             if(board[i][0] !== " " && board[i][0] === board[i][1] && board[i][1] === board[i][2])
                 return true;
-            }() => board
+            }
         return false;
     }
     verticalCheck(board){
@@ -36,7 +36,7 @@ class Board{
 }
 
 b = new Board();
-wrapper = new Game(b);
+
 b.resetBoard();
 b.makeMove(2,1,"X");
 b.makeMove(0,1,"X");
