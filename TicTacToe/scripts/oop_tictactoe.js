@@ -13,7 +13,7 @@ class Board{
             if(board[i][0] !== " " && board[i][0] === board[i][1] && board[i][1] === board[i][2])
                 return true;
             }
-        return false;
+        return false;;
     }
     verticalCheck(board){
         for (let i = 0; i < board.length; i++) {

@@ -26,6 +26,7 @@ class Circle{
     }
 
 
+
     getCenterX(){return () => this.#center.getX()}
     getCenterY(){return () => this.#center.getY()}
     getRadius(){return this.#radius;}
@@ -47,3 +48,7 @@ console.log(createCircle({ x: 2, y: 2, radius: 4 }).getCenterX())
 // → 2
 console.log(createCircle({ center: createPoint(2, 2), radius: 4 }).getCenterX())
 // → 2
+let circleArray = [createCircle({ x: 1, y: 1, radius: 2 }), createCircle({ x: 5, y: 4, radius: 8 }), createCircle({ x: 3, y: 4, radius: 3 })]
+
+let radiuses = circleArray.map(c => console.log(c.getRadius()))
+radiuses.forEach(r => {() => console.log(r)})
