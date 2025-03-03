@@ -9,7 +9,7 @@
     <section>
         <div class="pokeSearch">
             <input type="text" id="pokeInput" placeholder="Search for your pokemon (ID / NAME)">
-            <button onclick="getPokemonPromise()">Search!</button>
+            <button onclick="getPokemonAsyncTwo()">Search!</button>
         </div>
 
 
@@ -18,7 +18,18 @@
             <p id="pokeResult"></p>
             <img src="" alt="" id="pokeImage">
         </div>
+
     </section>
+
+    <section>
+        <div class="pokeWeight">
+            <p id="pokeWeightOutput"></p>
+            <button onClick="printTotalWeight()">Get Collective Weight!</button>
+        </div>
+        
+
+    </section>
+
 
     <script src="Exercises4.js"></script>
 </body>
